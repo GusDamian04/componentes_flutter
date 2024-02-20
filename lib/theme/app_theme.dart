@@ -18,14 +18,19 @@ class AppTheme{
           headlineLarge: GoogleFonts.acme(
             fontSize: 26.0,
             fontWeight: FontWeight.bold,
-            color: primaryColor
+            color: primaryColor,
+            decoration: TextDecoration.underline,
+            decorationStyle: TextDecorationStyle.double,
+            decorationThickness: 2.5,
           ),
 
           // Fuente para textos muy pequelos
           bodySmall: GoogleFonts.montserrat(
-            fontSize: 16.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.w500,
-            color: secondaryColor
+            color: secondaryColor,
+            fontStyle: FontStyle.italic,
+            decoration: TextDecoration.underline
           ),
         ),
   );
