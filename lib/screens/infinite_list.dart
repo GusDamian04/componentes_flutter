@@ -11,7 +11,7 @@ class _InfiniteListState extends State<InfiniteList> {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text("Ventana de Infinite"),
+      child: Text("Lista inifnita"),
     );
   }
 }
