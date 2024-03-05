@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
                 subtitle: Text('Recuperar informacion de TexField', style: AppTheme.lightTheme.textTheme.bodySmall),
                 leading: const Icon(Icons.input_rounded, color: AppTheme.primaryColor),
                 trailing: const Icon(Icons.arrow_right_outlined, color: AppTheme.primaryColor),
+                //trailing: const CircularProgressIndicator(color: AppTheme.primaryColor,),
                 onTap: () {
                   final ruta1 = MaterialPageRoute(builder: (context){
                     return const Inputs();
