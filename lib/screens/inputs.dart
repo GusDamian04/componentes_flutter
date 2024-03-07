@@ -11,6 +11,7 @@ class Inputs extends StatefulWidget {
 class _InputsState extends State<Inputs> {
   bool valueSwitch = false;
   double sliderValue = 5.0;
+  int foodRadio = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +26,8 @@ class _InputsState extends State<Inputs> {
             entradaTexto(),
             entradaSwitch(),
             entradaSider(),
+            entradaRadio(),
+            entradaRadio1(),
             const ElevatedButton(
               onPressed: null,
               child: Text('Guardar')
@@ -87,6 +90,87 @@ class _InputsState extends State<Inputs> {
               // print('Valor del slider: $sliderValue');
             });
           }),
+      ],
+    );
+  }
+
+  Column entradaRadio(){
+    return Column(
+      children: [
+        Text(
+          '¿Qué prefires?',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+          ),
+          ListTile(
+            title: Text(
+              'Tacos al pastor',
+              style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+            leading: Radio(
+              value: 1,
+              groupValue: foodRadio,
+              onChanged: (value) {
+                setState(() {
+                  foodRadio = value!;
+                });
+              },
+            ),
+          ),
+          ListTile(
+            title: Text(
+              'Pozole',
+              style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+            leading: Radio(
+              value: 2,
+              groupValue: foodRadio,
+              onChanged: (value) {
+                setState(() {
+                  foodRadio = value!;
+                });
+              },
+            ),
+          ),
+      ],
+    );
+  }
+  Column entradaRadio1(){
+    return Column(
+      children: [
+        Text(
+          '¿Qué bebida prefires?',
+          style: AppTheme.lightTheme.textTheme.headlineLarge,
+          ),
+          ListTile(
+            title: Text(
+              'Coca-Cola',
+              style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+            leading: Radio(
+              value: 1,
+              groupValue: foodRadio,
+              onChanged: (value) {
+                setState(() {
+                  foodRadio = value!;
+                });
+              },
+            ),
+          ),
+          ListTile(
+            title: Text(
+              'Agua',
+              style: AppTheme.lightTheme.textTheme.bodySmall,
+              ),
+            leading: Radio(
+              value: 2,
+              groupValue: foodRadio,
+              onChanged: (value) {
+                setState(() {
+                  foodRadio = value!;
+                });
+              },
+            ),
+          ),
       ],
     );
   }
