@@ -28,10 +28,12 @@ class _ImagesScreenState extends State<ImagesScreen> {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       margin: const EdgeInsets.all(20),
-      elevation: 10,
+      elevation: 15,
       child: SizedBox(
-          height: 1,
-          width: 1,
+          height: 304,
+          width: 400,
+          // height: 1,
+          // width: 1,
           child: Column(
             children: [
               ClipRRect(
@@ -42,7 +44,7 @@ class _ImagesScreenState extends State<ImagesScreen> {
               ),
               Container(
                 padding: const EdgeInsets.all(10),
-                child: Text('Paisaje', style: AppTheme.lightTheme.textTheme.headlineLarge,),
+                child: Text('Juego', style: AppTheme.lightTheme.textTheme.headlineLarge,),
               )
             ],
           ),
