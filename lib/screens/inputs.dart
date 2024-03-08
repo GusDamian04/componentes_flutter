@@ -12,28 +12,40 @@ class _InputsState extends State<Inputs> {
   bool valueSwitch = false;
   double sliderValue = 5.0;
   int foodRadio = 0;
+  bool postreCheck1 = false;
+  bool postreCheck2 = false;
+  bool postreCheck3 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Entradas')
         ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            entradaTexto(),
-            entradaSwitch(),
-            entradaSider(),
-            entradaRadio(),
-            entradaRadio1(),
-            const ElevatedButton(
-              onPressed: null,
-              child: Text('Guardar')
-            )
-          ],
+      body: ListView(
+        children: [
+            Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              entradaTexto(),
+              entradaSwitch(),
+              entradaSider(),
+              entradaRadio(),
+              Text(
+                '¿Qué postres te gustan?',
+                style: AppTheme.lightTheme.textTheme.headlineLarge,
+              ),
+              entradaCheck(),
+              const ElevatedButton(
+                onPressed: null,
+                child: Text('Guardar')
+              )
+            ],
+          ),
         ),
+      ]
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
@@ -134,43 +146,48 @@ class _InputsState extends State<Inputs> {
       ],
     );
   }
-  Column entradaRadio1(){
-    return Column(
+
+  Row entradaCheck(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          '¿Qué bebida prefires?',
-          style: AppTheme.lightTheme.textTheme.headlineLarge,
-          ),
-          ListTile(
-            title: Text(
-              'Coca-Cola',
-              style: AppTheme.lightTheme.textTheme.bodySmall,
-              ),
-            leading: Radio(
-              value: 1,
-              groupValue: foodRadio,
-              onChanged: (value) {
-                setState(() {
-                  foodRadio = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: Text(
-              'Agua',
-              style: AppTheme.lightTheme.textTheme.bodySmall,
-              ),
-            leading: Radio(
-              value: 2,
-              groupValue: foodRadio,
-              onChanged: (value) {
-                setState(() {
-                  foodRadio = value!;
-                });
-              },
-            ),
-          ),
+          'Helado',
+          style: AppTheme.lightTheme.textTheme.bodyMedium,
+        ),
+        Checkbox(
+          value: postreCheck1,
+          onChanged: (value){
+            setState(() {
+              postreCheck1 = value!;
+            });
+          }
+        ),
+        Text(
+          'Chocoflan',
+          style: AppTheme.lightTheme.textTheme.bodyMedium,
+        ),
+        Checkbox(
+          value: postreCheck2,
+          onChanged: (value){
+            setState(() {
+              postreCheck2 = value!;
+            });
+          }
+        ),
+        Text(
+          'Pastel',
+          style: AppTheme.lightTheme.textTheme.bodyMedium,
+        ),
+        Checkbox(
+          value: postreCheck3,
+          onChanged: (value){
+            setState(() {
+              postreCheck3 = value!;
+            });
+          }
+        ),
+
       ],
     );
   }

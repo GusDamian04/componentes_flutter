@@ -67,6 +67,14 @@ class AppTheme{
             fontStyle: FontStyle.italic,
             decoration: TextDecoration.underline
           ),
+
+          bodyMedium: GoogleFonts.montserrat(
+            fontSize: 18.0,
+            fontWeight: FontWeight.w500,
+            color: secondaryColor,
+            fontStyle: FontStyle.italic,
+            decoration: TextDecoration.underline
+          )
         ),
   );
 }
