@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:practica3/models/data.dart';
+import 'package:practica3/screens/data_screen.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/infinite_list.dart';
@@ -13,9 +16,10 @@ class Inputs extends StatefulWidget {
 }
 
 class _InputsState extends State<Inputs> {
+  String? nombre;
   bool valueSwitch = false;
   double sliderValue = 5.0;
-  int foodRadio = 0;
+  String? foodRadio;
   bool postreCheck1 = false;
   bool postreCheck2 = false;
   bool postreCheck3 = false;
@@ -30,27 +34,41 @@ class _InputsState extends State<Inputs> {
       body: ListView(
         children: [
             Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              entradaTexto(),
-              entradaSwitch(),
-              entradaSider(),
-              entradaRadio(),
-              Text(
-                '¿Qué postres te gustan?',
-                style: AppTheme.lightTheme.textTheme.headlineLarge,
-              ),
-              entradaCheck(),
-              const ElevatedButton(
-                onPressed: null,
-                child: Text('Guardar')
-              )
-            ],
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                entradaTexto(),
+                entradaSwitch(),
+                entradaSider(),
+                entradaRadio(),
+                Text(
+                  '¿Qué postres te gustan?',
+                  style: AppTheme.lightTheme.textTheme.headlineLarge,
+                ),
+                entradaCheck(),
+                ElevatedButton(
+                  onPressed: (){
+                    Data data = Data(
+                      nomb: nombre!,
+                      flutter: valueSwitch,
+                      calif: sliderValue.round(),
+                      food: foodRadio!,
+                      icecreem: postreCheck1,
+                      choco: postreCheck2,
+                      cake: postreCheck3,
+                    );
+                    final ruta = MaterialPageRoute(builder: (context){
+                      return DataScreen(datos: data,);
+                    });
+                    Navigator.push(context, ruta);
+                  },
+                  child: const Text('Guardar'),
+                )
+              ],
+            ),
           ),
-        ),
-      ]
+        ]
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
@@ -102,6 +120,9 @@ class _InputsState extends State<Inputs> {
       case 3:
         ruta = MaterialPageRoute(builder: (context) => const ImagesScreen ());
         break;
+      case 4: // No aplicable en navegadores
+        SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        break;
     }
     setState(() {
       selectedIndex = index;
@@ -117,6 +138,9 @@ class _InputsState extends State<Inputs> {
             labelText: 'Escribe tu nombre: ',
             labelStyle: AppTheme.lightTheme.textTheme.headlineLarge,
           ),
+          onChanged: (text){
+              nombre = text;
+            },
         );
   }
   Row entradaSwitch(){
@@ -165,37 +189,37 @@ class _InputsState extends State<Inputs> {
         Text(
           '¿Qué prefires?',
           style: AppTheme.lightTheme.textTheme.headlineLarge,
+        ),
+        ListTile(
+          title: Text(
+            'Tacos al pastor',
+            style: AppTheme.lightTheme.textTheme.bodySmall,
           ),
-          ListTile(
-            title: Text(
-              'Tacos al pastor',
-              style: AppTheme.lightTheme.textTheme.bodySmall,
-              ),
-            leading: Radio(
-              value: 1,
-              groupValue: foodRadio,
-              onChanged: (value) {
-                setState(() {
-                  foodRadio = value!;
-                });
-              },
-            ),
+          leading: Radio(
+          value: 'Tacos al pastor',
+            groupValue: foodRadio,
+            onChanged: (value) {
+              setState(() {
+                foodRadio = value!;
+              });
+            },
           ),
-          ListTile(
-            title: Text(
-              'Pozole',
-              style: AppTheme.lightTheme.textTheme.bodySmall,
-              ),
-            leading: Radio(
-              value: 2,
-              groupValue: foodRadio,
-              onChanged: (value) {
-                setState(() {
-                  foodRadio = value!;
-                });
-              },
-            ),
+        ),
+        ListTile(
+          title: Text(
+            'Pozole',
+            style: AppTheme.lightTheme.textTheme.bodySmall,
           ),
+          leading: Radio(
+            value: 'Pozole',
+            groupValue: foodRadio,
+            onChanged: (value) {
+              setState(() {
+                foodRadio = value!;
+              });
+            },
+          ),
+        ),
       ],
     );
   }
