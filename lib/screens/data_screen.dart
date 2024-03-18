@@ -20,7 +20,7 @@ class _DataScreen extends State<DataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
- appBar: AppBar(
+      appBar: AppBar(
         title: const Text('Entradas')
         ),
       body: ListView(
@@ -33,27 +33,27 @@ class _DataScreen extends State<DataScreen> {
               Text(
                 'Nombre: ',
                 style: AppTheme.lightTheme.textTheme.headlineLarge),
-              entradaTexto(),
+              Text(widget.datos.nombre!, style: AppTheme.lightTheme.textTheme.bodyMedium),
               Text(
                 '¿Te gusta Flutter?',
                 style: AppTheme.lightTheme.textTheme.headlineLarge,
               ),
-              entradaTexto(),
+              Text(widget.datos.gustoFlutter.toString()),
               Text(
                 '¿Qué tanto te gusta Flutter?',
                 style: AppTheme.lightTheme.textTheme.headlineLarge,
               ),
-              entradaTexto(),
+              Text(widget.datos.califFlutter.toString()),
               Text(
                 '¿Qué comida prefieres?',
                 style: AppTheme.lightTheme.textTheme.headlineLarge,
               ),
-              entradaTexto(),
+              Text(widget.datos.comida.toString()),
               Text(
                 '¿Qué postres te gustan?',
                 style: AppTheme.lightTheme.textTheme.headlineLarge,
               ),
-              entradaTexto(),
+              valorString(widget.datos.helado!, widget.datos.chocoflan!, widget.datos.pastel!)
             ],
           ),
         ),
@@ -116,13 +116,73 @@ class _DataScreen extends State<DataScreen> {
     });
   }
 
-  TextField entradaTexto() {
-    return TextField(
-          style: AppTheme.lightTheme.textTheme.headlineMedium,
-          decoration: InputDecoration(
-            border: const UnderlineInputBorder(),
-            labelStyle: AppTheme.lightTheme.textTheme.headlineLarge,
-          ),
-        );
+  
+  
+  Text valorString(bool helado, bool chocoflan, bool pastel){
+    if(helado == true){
+      if(chocoflan == true){
+        if(pastel == true){
+          return const Text('Helado, Chocoflan, Pastel');
+        } else {
+          return const Text('Helado, Chocoflan');
+        }
+      } else if(pastel == true){
+        return const Text('Helado, Pastel');
+      }else{
+        return const Text('Helado');
+      }
+    }
+    if(chocoflan == true){
+      if(pastel == true){
+        return const Text('Chocoflan, Pastel');
+      } else {
+        return const Text('Chocoflan');
+      }
+    }
+    if(pastel == true){
+      return const Text('Pastel');
+    }
+    return const Text('Ningun Postre');
   }
+
+  /*
+  Column valorString(bool helado, bool chocoflan, bool pastel){
+    if(helado == true && chocoflan == true && pastel){
+      return const Column(
+              children: [
+                Text('Helado')
+              ],
+            );
+    } else if(chocoflan == true){
+      return const Column(
+              children: [
+                Text('Helado')
+              ],
+            );
+    } else if(pastel == true){
+      return const Column(
+              children: [
+                Text('Helado')
+              ],
+            );
+    }
+    return const Column(
+              children: [
+                Text('Ningun Postre')
+              ],
+            );
+  }*/
+  // String ValorString(){
+  //   String? icecreem = 'Helado';
+  //   String? chocoflan = 'chocoflan';
+  //   String? pastel = 'pastel';
+  //   if(widget.datos.helado == true){
+  //     return icecreem;
+  //   } else if(widget.datos.chocoflan == true){
+  //     return chocoflan;
+  //   } else if(widget.datos.pastel == true){
+  //     return pastel;
+  //   }
+  //   return 'Ningun postre';
+  // }
 }

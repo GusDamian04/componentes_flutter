@@ -21,8 +21,11 @@ class _InputsState extends State<Inputs> {
   double sliderValue = 5.0;
   String? foodRadio;
   bool postreCheck1 = false;
+  String? postreHelado;
   bool postreCheck2 = false;
+  String? postreChoco;
   bool postreCheck3 = false;
+  String? postrePastel;
   int selectedIndex = 0; // Elemento seleccionado de la BottomNavigationBar
 
   @override
@@ -237,6 +240,7 @@ class _InputsState extends State<Inputs> {
           onChanged: (value){
             setState(() {
               postreCheck1 = value!;
+              postreHelado = 'helado';
             });
           }
         ),
@@ -249,6 +253,7 @@ class _InputsState extends State<Inputs> {
           onChanged: (value){
             setState(() {
               postreCheck2 = value!;
+              postreChoco = 'Chocoflan';
             });
           }
         ),
@@ -261,6 +266,7 @@ class _InputsState extends State<Inputs> {
           onChanged: (value){
             setState(() {
               postreCheck3 = value!;
+              postrePastel = 'Pastel';
             });
           }
         ),
